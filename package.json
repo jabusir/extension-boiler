@@ -1,0 +1,34 @@
+{
+  "name": "jukebox-twitch",
+  "version": "1.0.0",
+  "description": "Simple Hello World Twitch Extension",
+  "main": "index.js",
+  "scripts": {
+    "cert": "node bin/generate_cert.js server",
+    "start": "node services/backend",
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server --https",
+    "be-dev": "nodemon services/backend",
+    "be-dev-local": "nodemon services/backend -l ../panel"
+  },
+  "keywords": [
+    "twitch",
+    "extension"
+  ],
+  "author": "Osman Jehad",
+  "dependencies": {
+    "@babel/core": "^7.0.1",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "express": "^4.16.3",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "request": "^2.85.0",
+    "webpack": "^4.19.0",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
+  }
+}
