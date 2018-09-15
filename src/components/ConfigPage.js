@@ -1,16 +1,16 @@
 import React from 'react';
 
 class ConfigPage extends React.Component {
-    componentDidMount() {
-        
-    }
-
     render() {
         return (
             <div>
-                The Config Page 
+                <button onClick={this.grantSpotify}>Grant Jukebox.io Spotify Access</button>
             </div>
         );
+    }
+
+    grantSpotify() {
+        window.open('https://localhost:8081/spotify/login', '_blank', 'width=500,height=500');
     }
 }
 

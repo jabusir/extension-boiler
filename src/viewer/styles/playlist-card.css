@@ -1,0 +1,26 @@
+
+
+.playlist-card img {
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.playlist-card {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: #17141f;
+    color: #b8b5c0;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    border-bottom: 1px solid #b8b5c0;
+    transition: background 200ms ease-out;
+}
+
+.playlist-card:hover {
+    background: #17141fa2
+}
+
+.playlist-title {
+    font-size: 30px;
+}

@@ -1,0 +1,32 @@
+.song-image {
+    height: 200px;
+    width: 200px;
+}
+
+.play-container {
+    display: flex;
+}
+
+.song-info__name {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 7px;
+}
+
+.song-info {
+    width: 100%;
+    max-height: 200px;
+    background: #17141f;
+    padding: 20px;
+    color: #b8b5c0;
+}
+
+.song-artist {
+    font-size: 16px;
+}
+
+.song-time {
+    font-size: 20px;
+    margin-top: 10px;
+}
+

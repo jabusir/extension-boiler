@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 const spotify = require('./routes/spotify');
 app.use('/spotify', spotify );
 
-let options = {
+const options = {
 	key: fs.readFileSync(path.resolve(__dirname, '../conf/server.key')),
 	cert: fs.readFileSync(path.resolve(__dirname, '../conf/server.crt')),
 };

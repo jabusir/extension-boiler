@@ -1,0 +1,49 @@
+.song-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 19px;
+    background: #17141f;
+    color: #b8b5c0;
+    min-height: 60px;
+    border-bottom: .2px solid #b8b5c0;
+}
+
+
+.info-container {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.vote-button{
+    right: 10px;
+    margin: 0;
+
+}
+
+.song-name{
+    max-width: 75%;
+}
+
+.arrow{
+    background: #6e4cbe;
+    color: #b8b5c0;
+    cursor: pointer;
+    padding: 18px;
+    user-select: none;
+}
+
+.arrow--down {
+    background: #4b367c;
+}
+
+.dashes {
+    font-size: 20px;
+}
+
+.dashes > span {
+    margin-left: -2px;
+}
