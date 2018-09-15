@@ -15,7 +15,7 @@
     "twitch",
     "extension"
   ],
-  "author": "Osman Jehad",
+  "author": "Jehad Osman",
   "dependencies": {
     "@babel/core": "^7.0.1",
     "@babel/preset-env": "^7.0.0",
