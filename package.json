@@ -8,14 +8,14 @@
     "start": "node services/backend",
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --https",
-    "be-dev": "nodemon services/backend",
+    "be-dev": "nodemon server/index.js",
     "be-dev-local": "nodemon services/backend -l ../panel"
   },
   "keywords": [
     "twitch",
     "extension"
   ],
-  "author": "Osman Jehad",
+  "author": "Jehad Osman",
   "dependencies": {
     "@babel/core": "^7.0.1",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
@@ -26,7 +26,10 @@
     "babel-loader": "^8.0.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "cors": "^2.8.4",
+    "css-loader": "^1.0.0",
     "express": "^4.16.3",
+    "node-fetch": "^2.2.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "request": "^2.85.0",
