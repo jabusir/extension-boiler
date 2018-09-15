@@ -4,7 +4,8 @@ const fetch = require('node-fetch');
 
 const clientId = 'f41c314e86ac49ecb7b7b4814823d0a3';
 const clientSecret = '7b068651c33a49d881601d9d3ac9d3e5'; // Set env variables before production
-const redirectUri = 'https://localhost:8080/live_config.html';
+// const redirectUri = 'https://localhost:8080/live_config.html';
+const redirectUri = 'https://localhost:8081/spotify/callback';
 
 router.get('/login', (req, res) => {
     const scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative streaming user-read-birthdate';
@@ -38,6 +39,11 @@ router.get('/token', (req, res) => {
         .then((response) => { 
             res.json(response);
         });
-})
+});
+
+router.get('/callback', (req, res) => {
+    const code = req.query.code;
+    res.send(`<script>window.opener.postMessage('${code}', '*'); window.close()</script>`);
+});
 
 module.exports = router;
