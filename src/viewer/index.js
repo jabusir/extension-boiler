@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
 import App from './App';
 import configureStore from './store/configureStore';
-import { setToken } from './actions/tokenActions';
+import { setToken, setRefreshToken, setExpireTime } from './actions/tokenActions';
 import { setDeviceId } from './actions/configActions';
 
 export const store = configureStore();
@@ -17,7 +16,13 @@ window.addEventListener('message', (e) => {
         fetch(`https://localhost:8081/spotify/token?code=${message.code}`)
         .then((res) => res.json())
         .then((res) => {
-            localStorage.setItem('token', JSON.stringify(res));
+           const { access_token, expires_in, refresh_token } = res;
+           store.dispatch(setToken(access_token));
+           store.dispatch(setRefreshToken(refresh_token));
+           store.dispatch(setExpireTime(expires_in));
+           setInterval(() => {
+               fetch(`https://localhost:8081/spotify/token?code=${refresh_token}`)
+           }, 34000)
         });
     }
 });
@@ -68,3 +73,4 @@ function loadScript(authToken) {
     script.addEventListener('load', setupPlayer(authToken));
     document.body.appendChild(script);
 }
+
