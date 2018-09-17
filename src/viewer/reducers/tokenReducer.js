@@ -1,7 +1,6 @@
 const defaultState = {
     token: '',
-    refreshToken: '',
-    expireTime: ''
+    expireTime: 0
 };
 
 export default (state = defaultState, action ) => { 
@@ -11,11 +10,7 @@ export default (state = defaultState, action ) => {
                 ...state,
                 token: action.token
             };
-        case 'SET_REFRESH_TOKEN':
-            return {
-                ...state,
-                refreshToken: action.refreshToken
-            };
+
         case 'SET_EXPIRE_TIME':
             return {
                 ...state,

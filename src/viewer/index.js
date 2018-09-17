@@ -16,24 +16,34 @@ window.addEventListener('message', (e) => {
         fetch(`https://localhost:8081/spotify/token?code=${message.code}`)
         .then((res) => res.json())
         .then((res) => {
-           const { access_token, expires_in, refresh_token } = res;
+           let { access_token, expires_in, refresh_token } = res;
            store.dispatch(setToken(access_token));
-           store.dispatch(setRefreshToken(refresh_token));
            store.dispatch(setExpireTime(expires_in));
+           loadScript(access_token);
+           console.log('pre interval');
            setInterval(() => {
-               fetch(`https://localhost:8081/spotify/token?code=${refresh_token}`)
-           }, 34000)
+               fetch(`https://localhost:8081/spotify/refresh?refresh_token=${refresh_token}`)
+                .then((res) => res.json())
+                .then((res) => {
+                    const { access_token, expires_in } = res
+                    console.log(res);
+                    store.dispatch(setToken(access_token));
+                    store.dispatch(setExpireTime(expires_in));
+                })
+                .catch((err) => console.log(err));
+           }, store.token.expireTime * 1000 - 2000);
+           console.log('about to render');
+           ReactDOM.render((
+            <Provider store={store}>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </Provider>
+            ), document.getElementById('twitch-extension-viewer'));        
         });
     }
 });
 
-ReactDOM.render((
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>
-), document.getElementById('twitch-extension-viewer'));
 
 function setupPlayer(authToken) {
     window.onSpotifyWebPlaybackSDKReady = () => {
