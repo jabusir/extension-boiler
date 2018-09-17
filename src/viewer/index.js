@@ -10,7 +10,6 @@ import { setDeviceId } from './actions/configActions';
 
 export const store = configureStore();
 
-
 const authWindow = window.open('https://localhost:8081/spotify/login', '_blank', 'width=500,height=500');
 window.addEventListener('message', (e) => {
     const message = e.data
