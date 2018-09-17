@@ -19,20 +19,10 @@ window.addEventListener('message', (e) => {
            let { access_token, expires_in, refresh_token } = res;
            store.dispatch(setToken(access_token));
            store.dispatch(setExpireTime(expires_in));
+
            loadScript(access_token);
-           console.log('pre interval');
-           setInterval(() => {
-               fetch(`https://localhost:8081/spotify/refresh?refresh_token=${refresh_token}`)
-                .then((res) => res.json())
-                .then((res) => {
-                    const { access_token, expires_in } = res
-                    console.log(res);
-                    store.dispatch(setToken(access_token));
-                    store.dispatch(setExpireTime(expires_in));
-                })
-                .catch((err) => console.log(err));
-           }, store.token.expireTime * 1000 - 2000);
-           console.log('about to render');
+           setRefreshInterval(refresh_token);
+           
            ReactDOM.render((
             <Provider store={store}>
                 <BrowserRouter>
@@ -84,3 +74,17 @@ function loadScript(authToken) {
     document.body.appendChild(script);
 }
 
+function setRefreshInterval(refresh_token) {
+    console.log('setting interval')
+    setInterval(() => {
+        fetch(`https://localhost:8081/spotify/refresh?refresh_token=${refresh_token}`)
+         .then((res) => res.json())
+         .then((res) => {
+             console.log(res);
+             const { access_token, expires_in } = res
+             store.dispatch(setToken(access_token));
+             store.dispatch(setExpireTime(expires_in));
+         })
+         .catch((err) => console.log(err));
+    }, store.getState().token.expireTime * 1000 - 2000);
+}
