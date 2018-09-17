@@ -10,34 +10,21 @@ import { setDeviceId } from './actions/configActions';
 
 export const store = configureStore();
 
-
-const token = localStorage.getItem('token');
-console.log('ABOUT TO OPEN WINDOW');
-//if (!token) {
-    const authWindow = window.open('https://localhost:8081/spotify/login', '_blank', 'width=500,height=500');
-    window.addEventListener('message', (e) => {
-        const message = e.data
-        if (message.type && message.type === 'ours') {
-            fetch(`https://localhost:8081/spotify/token?code=${message.code}`)
+const authWindow = window.open('https://localhost:8081/spotify/login', '_blank', 'width=500,height=500');
+window.addEventListener('message', (e) => {
+    const message = e.data
+    if (message.type && message.type === 'ours') {
+        fetch(`https://localhost:8081/spotify/token?code=${code}`)
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
-                localStorage.setItem('token', res);
+                const token = JSON.stringify(res);
+                console.log(token);
+                localStorage.setItem('token', token);
+                store.dispatch(setToken(token));
+                loadScript(store.getState().token);
             });
         }
     });
-
-    // fetch("/spotify/token")
-    //     .then((res) => res.json())
-    //     .then((token) => {
-    //         localStorage.setItem('token', token);
-    //         store.dispatch(setToken(token));
-    //         loadScript(store.getState().token);
-    //     })
-// } else {
-//     store.dispatch(setToken(token));
-//     loadScript(store.getState().token);
-// }
 
 
 function setupPlayer(authToken) {
