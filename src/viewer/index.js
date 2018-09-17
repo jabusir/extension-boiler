@@ -17,7 +17,7 @@ window.addEventListener('message', (e) => {
         fetch(`https://localhost:8081/spotify/token?code=${message.code}`)
         .then((res) => res.json())
         .then((res) => {
-            localStorage.setItem('token', JSON.stringify(res));
+            
         });
     }
 });
