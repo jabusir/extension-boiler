@@ -39,17 +39,14 @@ router.get('/token', async (req, res) => {
         }
     });
 
-    console.log('reply.status:', reply.status);
-
     const payload = await reply.json();
     res.json(payload);
 
 });
 
 router.get('/callback', (req, res) => {
-
     const code = req.query.code;
-    res.send(`<script>window.opener.postMessage('${code}', '*'); window.close()</script>`);
+    res.send(`<script>window.opener.postMessage({ type: 'ours', code: '${code}' }, '*'); window.close()</script>`);
 
 });
 
