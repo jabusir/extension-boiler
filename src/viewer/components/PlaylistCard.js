@@ -40,7 +40,7 @@ class PlaylistCard extends React.Component {
 };
 
 const mapStateToProps = (state) => ({ 
-    token: state.token
+    token: state.token.token
 })
 
 export default connect(mapStateToProps)(PlaylistCard); 

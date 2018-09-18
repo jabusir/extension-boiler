@@ -37,6 +37,6 @@ class PlaylistSelect extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({ token : state.token })
+const mapStateToProps = (state) => ({ token : state.token.token })
 
 export default connect(mapStateToProps)(PlaylistSelect);

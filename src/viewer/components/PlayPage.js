@@ -53,7 +53,7 @@ class PlayPage extends React.Component {
 const mapStateToProps = (state) => ({
     deviceId: state.config.deviceId,
     songUri: state.config.song,
-    token: state.token,
+    token: state.token.token,
     songs: state.songs
 });
 
