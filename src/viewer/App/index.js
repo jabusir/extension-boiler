@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import VotingPage from '../components/VotingPage';
 import PlaylistSelect from '../components/PlaylistSelect';
@@ -11,15 +11,18 @@ import '../styles/pages.css';
 
 class App extends React.Component {
     render() {
+        console.log('App mounted');
         return (
-            <div>
-                <Route path='/' component={Header} />
-                <Switch>
-                    <Route path='/' component={PlaylistSelect} exact />
-                    <Route path='/voting' component={VotingPage} />
-                    <Route path='/play' component={PlayPage} />
-                </Switch>
-            </div>
+            <BrowserRouter basename="viewer.html">
+                <div>
+                    <Route path='/' component={Header} />
+                    <Switch>
+                        <Route path='/' component={PlaylistSelect} exact />
+                        <Route path='/voting' component={VotingPage} />
+                        <Route path='/play' component={PlayPage} />
+                    </Switch>
+                </div>
+            </BrowserRouter>
         )
     }
 }
